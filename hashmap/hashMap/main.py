@@ -36,21 +36,18 @@ class Ploc:
 
     def read(self, key: str):
         # Регулярное выражение для извлечения знаков и чисел
-        sign_pattern = r'([<>]=?|=)'  # Matches >, >=, <, <=, <>, =
-        number_pattern = r'(\d+\.?\d*)'  # Matches integers and floats
+        sign_pattern = r'([<>]=?|=)'  
+        number_pattern = r'(\d+\.?\d*)'  
 
-        # Find all signs and numbers using regex findall
         signs = re.findall(sign_pattern, key)
         numbers = re.findall(number_pattern, key)
 
-        # Validate the extracted numbers and convert to float
         float_numbers = []
         for number in numbers:
             if number.count(".") > 1:
                 raise KeyError("Incorrect key specified")
             float_numbers.append(float(number))
 
-        # Return the results
         return signs, float_numbers
 
 
